@@ -1,0 +1,8 @@
+/assets.json
+node_modules
+npm-debug.log
+.DS_Store
+dist
+stats.json
+.idea
+build
