@@ -2,7 +2,7 @@
   "name": "react-dumb-component",
   "description": "Boilerplate for ReactJS dumb components",
   "main": "dist-modules",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "author": "Rodrigo Ortega Cuesta <rodortcue@gmail.com> (http://github.com/asdelday)",
   "user": "asdelday",
