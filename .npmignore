@@ -1,0 +1,5 @@
+demo/
+dist/
+src/
+.*
+webpack.config.babel.js

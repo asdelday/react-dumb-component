@@ -1,8 +1,6 @@
-/assets.json
-node_modules
-npm-debug.log
 .DS_Store
-dist
-stats.json
+npm-debug.log
 .idea
-build
+node_modules/
+dist-modules/
+build/
