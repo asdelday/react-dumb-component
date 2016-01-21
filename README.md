@@ -47,15 +47,11 @@ npm version patch -m "Upgrade to %s for reasons"
 <div id="bundles"></div>
 
 ### 4. Build bundles
-Generate Library to import from dependency injection
-```
-npm run dist:modules
-```
-Generate bundles without minification
+Generate library bundles without minification
 ```
 npm run dist
 ```
-Generate bundles minificated
+Generate library bundles minificated
 ```
 npm run dist:min
 ```
@@ -84,7 +80,7 @@ var webpackConfig = {
 ### 5. TODO
 * Document boilerplate
 * Clean project
-* Add CSS Preprocessor support
+* ~~Add CSS Preprocessor support~~
 * Add Test support
 * Add GitHub pages
 

@@ -19,6 +19,11 @@ const config = {
   library: 'DumbComponent',
 };
 
+const AUTOPREFIXER_BROWSERS = [
+  'Android 2.3', 'Android >= 4', 'Chrome >= 35', 'Firefox >= 31', 'Explorer >= 9',
+  'iOS >= 7', 'Opera >= 12', 'Safari >= 7.1',
+];
+
 const CSS_PATHS = [
   config.paths.demo,
   config.paths.src,
@@ -60,13 +65,20 @@ if (TARGET === 'start' || !TARGET) {
     ],
     module: {
       loaders: [
-        { test: /\.css$/, loaders: ['style', 'css'], include: CSS_PATHS },
+        { test: /\.scss$/, loaders: ['style', 'css', 'postcss'], include: CSS_PATHS },
         {
           test: /\.jsx?$/,
           loaders: ['babel?cacheDirectory'],
           include: [config.paths.demo, config.paths.src],
         },
       ],
+    },
+    postcss: function (webpack) {
+      return [
+        require('postcss-import')({ addDependencyTo: webpack }),
+        require('precss')(),
+        require('autoprefixer')({ browsers: AUTOPREFIXER_BROWSERS }),
+      ];
     },
     devServer: {
       historyApiFallback: true,
@@ -101,9 +113,16 @@ const distCommon = {
   },
   module: {
     loaders: [
-      { test: /\.css?$/, loaders: ['style', 'css'], include: config.paths.src },
+      { test: /\.scss?$/, loaders: ['style', 'css', 'postcss'], include: config.paths.src },
       { test: /\.jsx?$/, loaders: ['babel'], include: config.paths.src },
     ],
+  },
+  postcss: function (webpack) {
+    return [
+      require('postcss-import')({ addDependencyTo: webpack }),
+      require('precss')(),
+      require('autoprefixer')({ browsers: AUTOPREFIXER_BROWSERS }),
+    ];
   },
 };
 

@@ -1,0 +1,6 @@
+{
+  "name": "SubDumbComponent",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./SubDumbComponent.jsx"
+}

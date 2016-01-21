@@ -1,5 +1,4 @@
 var execSync = require('child_process').execSync;
-var stat = require('fs').stat;
 
 // Node 0.10 check execSync availability
 if (!execSync) {
@@ -11,10 +10,6 @@ function exec(command) {
   execSync(command, { stdio: [0, 1, 2] });
 }
 
-stat('dist-modules', function(error, stat) {
-  if (error || !stat.isDirectory()) {
-    // Install necessary dependencies and build library
-    exec('npm i babel-cli babel-preset-es2015 babel-preset-stage-1 babel-preset-react');
-    exec('npm run dist:modules');
-  }
-});
+// Install necessary dependencies and build library
+exec('npm run dist');
+exec('npm run dist:min');

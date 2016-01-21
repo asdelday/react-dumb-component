@@ -1,7 +1,7 @@
 {
   "name": "react-dumb-component",
   "description": "Boilerplate for ReactJS dumb components",
-  "main": "dist-modules",
+  "main": "./dist/react-dumb-component.js",
   "version": "1.1.0",
   "license": "MIT",
   "author": "Rodrigo Ortega Cuesta <rodortcue@gmail.com> (http://github.com/asdelday)",
@@ -29,6 +29,7 @@
     "webpack"
   ],
   "devDependencies": {
+    "autoprefixer": "^6.3.1",
     "babel-cli": "^6.4.5",
     "babel-core": "^6.4.5",
     "babel-eslint": "^5.0.0-beta6",
@@ -48,6 +49,10 @@
     "file-loader": "^0.8.5",
     "html-webpack-plugin": "^1.7.0",
     "json-loader": "^0.5.4",
+    "postcss": "^5.0.14",
+    "postcss-import": "^7.1.3",
+    "postcss-loader": "^0.8.0",
+    "precss": "^1.4.0",
     "style-loader": "^0.13.0",
     "sync-exec": "^0.6.2",
     "url-loader": "^0.5.7",
@@ -64,10 +69,9 @@
     "start": "webpack-dev-server",
     "dist": "webpack",
     "dist:min": "webpack",
-    "dist:modules": "babel ./src --out-dir ./dist-modules",
     "test:lint": "eslint . --ext .js --ext .jsx",
     "preversion": "npm run test:lint && npm run dist && npm run dist:min && git commit --allow-empty -am \"Update dist\"",
-    "prepublish": "npm run dist:modules",
+    "prepublish": "npm run dist && npm run dist:min",
     "postinstall": "node tools/post-install.js"
   }
 }
