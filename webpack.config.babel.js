@@ -73,9 +73,9 @@ if (TARGET === 'start' || !TARGET) {
         },
       ],
     },
-    postcss: (webpack) => {
+    postcss: (wpk) => {
       return [
-        require('postcss-import')({ addDependencyTo: webpack }),
+        require('postcss-import')({ addDependencyTo: wpk }),
         require('precss')(),
         require('autoprefixer')({ browsers: AUTOPREFIXER_BROWSERS }),
       ];
@@ -117,9 +117,9 @@ const distCommon = {
       { test: /\.jsx?$/, loaders: ['babel'], include: config.paths.src },
     ],
   },
-  postcss: (webpack) => {
+  postcss: (wpk) => {
     return [
-      require('postcss-import')({ addDependencyTo: webpack }),
+      require('postcss-import')({ addDependencyTo: wpk }),
       require('precss')(),
       require('autoprefixer')({ browsers: AUTOPREFIXER_BROWSERS }),
     ];
