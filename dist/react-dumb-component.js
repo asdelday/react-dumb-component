@@ -56,8 +56,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	//module.exports = require('./DumbComponent');
-	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
@@ -193,7 +191,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _createClass(SubDumbComponent, [{
 	    key: 'render',
 	    value: function render() {
-	      console.log(_SubDumbComponent2.default);
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'SubDumbComponent' },
