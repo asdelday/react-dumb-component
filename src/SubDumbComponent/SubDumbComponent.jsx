@@ -3,7 +3,6 @@ import s from './SubDumbComponent.scss'; // eslint-disable-line no-unused-vars
 
 class SubDumbComponent extends React.Component {
   render() {
-    console.log(s);
     return (
       <div className="SubDumbComponent">
         <h2 className="SubDumbComponent__title">SubComponent</h2>

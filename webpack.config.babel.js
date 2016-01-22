@@ -73,7 +73,7 @@ if (TARGET === 'start' || !TARGET) {
         },
       ],
     },
-    postcss: function (webpack) {
+    postcss: (webpack) => {
       return [
         require('postcss-import')({ addDependencyTo: webpack }),
         require('precss')(),
@@ -117,7 +117,7 @@ const distCommon = {
       { test: /\.jsx?$/, loaders: ['babel'], include: config.paths.src },
     ],
   },
-  postcss: function (webpack) {
+  postcss: (webpack) => {
     return [
       require('postcss-import')({ addDependencyTo: webpack }),
       require('precss')(),
