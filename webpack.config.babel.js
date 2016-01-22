@@ -23,7 +23,7 @@ const AUTOPREFIXER_BROWSERS = [
   'iOS >= 7', 'Opera >= 12', 'Safari >= 7.1',
 ];
 
-const postcss = function(wpk) {
+function postcss(wpk) {
   return [
     require('postcss-import')({ addDependencyTo: wpk }),
     require('precss')(),
@@ -50,7 +50,7 @@ const demoCommon = {
       { test: /\.json$/, loader: 'json', include: path.join(ROOT_PATH, 'package.json') },
     ],
   },
-  postcss: postcss,
+  postcss,
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
@@ -80,12 +80,16 @@ if (TARGET === 'start' || !TARGET) {
         { test: /\.jsx?$/, loaders: ['eslint'], include: config.paths.src },
       ],
       loaders: [
-        {test: /\.png$/, loader: 'url?limit=100000&mimetype=image/png', include: config.paths.src},
+        {
+          test: /\.png$/,
+          loader: 'url?limit=100000&mimetype=image/png',
+          include: config.paths.src,
+        },
         { test: /\.jpg$/, loader: 'file', include: config.paths.src },
         {
           test: /\.scss$/,
           loaders: ['style', 'css', 'postcss'],
-          include: [config.paths.src, ...COMMON_CSS]
+          include: [config.paths.src, ...COMMON_CSS],
         },
         { test: /\.jsx?$/, loaders: ['babel?cacheDirectory'], include: config.paths.src },
       ],
@@ -102,12 +106,16 @@ if (TARGET === 'demo') {
         { test: /\.jsx?$/, loaders: ['eslint'], include: config.paths.demo },
       ],
       loaders: [
-        {test: /\.png$/, loader: 'url?limit=100000&mimetype=image/png', include: config.paths.demo},
+        {
+          test: /\.png$/,
+          loader: 'url?limit=100000&mimetype=image/png',
+          include: config.paths.demo,
+        },
         { test: /\.jpg$/, loader: 'file', include: config.paths.demo },
         {
           test: /\.scss$/,
           loaders: ['style', 'css', 'postcss'],
-          include: [config.paths.demo, ...COMMON_CSS]
+          include: [config.paths.demo, ...COMMON_CSS],
         },
         { test: /\.jsx?$/, loaders: ['babel?cacheDirectory'], include: [config.paths.demo] },
       ],
@@ -140,7 +148,7 @@ const distCommon = {
       { test: /\.jsx?$/, loaders: ['babel'], include: config.paths.src },
     ],
   },
-  postcss: postcss,
+  postcss,
 };
 
 if (TARGET === 'dist') {
