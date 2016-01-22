@@ -77,7 +77,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports.default = _DumbComponent2.default;
 	exports.SubDumbComponent = _SubDumbComponent2.default;
-	exports.ExtraDumbComponent = _ExtraDumbComponent2.default;
+	exports.ExtraDumbComponent = _ExtraDumbComponent2.default; /**
+	                                                            * Component Library Output
+	                                                            */
 
 /***/ },
 /* 1 */
@@ -248,7 +250,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	
 	// module
-	exports.push([module.id, "/*\n * Colors\n * ========================================================================== */\n\n.SubDumbComponent {\n  background: #f0141e\n}\n\n.SubDumbComponent__content {\n  background: #000;\n  color: #FFF;\n  margin: 15px;\n}\n\n.SubDumbComponent__title {\n  color: #FFF;\n}\n", ""]);
+	exports.push([module.id, ".SubDumbComponent{background:#f0141e}.SubDumbComponent__content{background:#000;color:#fff;margin:15px}.SubDumbComponent__title{color:#fff}", ""]);
 	
 	// exports
 
@@ -598,7 +600,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	
 	// module
-	exports.push([module.id, "/*\n * Colors\n * ========================================================================== */\n\n.DumbComponent {\n  border: solid 5px #000;\n  padding: 20px;\n}\n", ""]);
+	exports.push([module.id, ".DumbComponent{border:5px solid #000;padding:20px}", ""]);
 	
 	// exports
 
@@ -697,7 +699,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	
 	// module
-	exports.push([module.id, "/*\n * Colors\n * ========================================================================== */\n\n.ExtraDumbComponent {\n  color: #f0141e;\n}\n", ""]);
+	exports.push([module.id, ".ExtraDumbComponent{color:#f0141e}", ""]);
 	
 	// exports
 
