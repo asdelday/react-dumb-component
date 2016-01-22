@@ -5,10 +5,11 @@ A personal boilerplate to create ReactJS dumb components quickly.
 ### Table of Contents
 1. [Installation](#installation)
 2. [Develop](#develop)
-3. [Create Version](#version)
-4. [Build bundles](#bundles)
-5. [TODO](#todo)
-6. [License](#license)
+2. [Demo](#demo)
+4. [Create Version](#version)
+5. [Build bundles](#bundles)
+6. [TODO](#todo)
+7. [License](#license)
 
 ---
 
@@ -31,9 +32,20 @@ To override the default host and port through env (HOST, PORT)
 npm start
 ```
 
+<div id="demo"></div>
+
+### 3. Demo
+Runs a server to show the library demo at *https://localhost:8080*.
+To override the default host and port through env (HOST, PORT)
+
+```
+npm run demo
+```
+
+
 <div id="version"></div>
 
-### 3. Create Version
+### 4. Create Version
 Updates */dist* and *package.json* with the new package version and create a version tag to Git
 ```
 npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease]
@@ -46,7 +58,7 @@ npm version patch -m "Upgrade to %s for reasons"
 
 <div id="bundles"></div>
 
-### 4. Build bundles
+### 5. Build bundles
 Generate library bundles without minification
 ```
 npm run dist
@@ -54,6 +66,24 @@ npm run dist
 Generate library bundles minificated
 ```
 npm run dist:min
+```
+
+---
+
+**Important:** Change package.json info to you own and 
+change Library config at webpack.config.babel.js:
+
+```javascript
+const config = {
+  paths: {
+    dist: path.join(ROOT_PATH, 'dist'),
+    src: path.join(ROOT_PATH, 'src'),
+    demo: path.join(ROOT_PATH, 'demo'),
+    dev: path.join(ROOT_PATH, 'src/app.js'),
+  },
+  filename: pkg.name,
+  library: 'DumbComponent',
+};
 ```
 
 **Important:** If you are using external dependencies, you will need to include them into webpack
@@ -77,9 +107,9 @@ var webpackConfig = {
 
 <div id="todo"></div>
 
-### 5. TODO
+### 6. TODO
 * Document boilerplate
-* Clean project
+* ~~Clean project~~
 * ~~Add CSS Preprocessor support~~
 * Add Test support
 * Add GitHub pages
@@ -87,5 +117,5 @@ var webpackConfig = {
 
 <div id="license"></div>
 
-### 6. License
+### 7. License
 react-dumb-component is available under MIT. See LICENSE for more details.

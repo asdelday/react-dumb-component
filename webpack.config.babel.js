@@ -2,8 +2,6 @@ import * as path from 'path';
 
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-// import ExtractTextPlugin from 'extract-text-webpack-plugin';
-// import Clean from 'clean-webpack-plugin';
 import merge from 'webpack-merge';
 import pkg from './package.json';
 
@@ -14,6 +12,7 @@ const config = {
     dist: path.join(ROOT_PATH, 'dist'),
     src: path.join(ROOT_PATH, 'src'),
     demo: path.join(ROOT_PATH, 'demo'),
+    dev: path.join(ROOT_PATH, 'src/app.js'),
   },
   filename: pkg.name,
   library: 'DumbComponent',
@@ -24,10 +23,17 @@ const AUTOPREFIXER_BROWSERS = [
   'iOS >= 7', 'Opera >= 12', 'Safari >= 7.1',
 ];
 
-const CSS_PATHS = [
-  config.paths.demo,
-  config.paths.src,
-];
+const postcss = function(wpk) {
+  return [
+    require('postcss-import')({ addDependencyTo: wpk }),
+    require('precss')(),
+    require('autoprefixer')({ browsers: AUTOPREFIXER_BROWSERS }),
+    require('postcss-discard-comments')(),
+    require('cssnano')(),
+  ];
+}
+
+const COMMON_CSS = [];
 
 process.env.BABEL_ENV = TARGET;
 
@@ -35,59 +41,76 @@ process.env.BABEL_ENV = TARGET;
 /* COMPONENT DEMO
  * ---------------------------------------------------------------------------------------------- */
 const demoCommon = {
+  devtool: 'eval-source-map',
   resolve: {
     extensions: ['', '.js', '.jsx', '.css', '.png', '.jpg'],
   },
   module: {
-    preLoaders: [
-      { test: /\.jsx?$/, loaders: ['eslint'], include: [config.paths.demo, config.paths.src] },
-    ],
     loaders: [
-      { test: /\.png$/, loader: 'url?limit=100000&mimetype=image/png', include: config.paths.demo },
-      { test: /\.jpg$/, loader: 'file', include: config.paths.demo },
       { test: /\.json$/, loader: 'json', include: path.join(ROOT_PATH, 'package.json') },
     ],
   },
+  postcss: postcss,
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development'),
+    }),
+    new HtmlWebpackPlugin({
+      title: pkg.name + ' - ' + pkg.description,
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+  ],
+  devServer: {
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+    progress: true,
+    host: process.env.HOST,
+    port: process.env.PORT,
+    stats: 'errors-only',
+  },
 };
+
 
 if (TARGET === 'start' || !TARGET) {
   module.exports = merge(demoCommon, {
-    devtool: 'eval-source-map',
-    entry: config.paths.demo,
-    plugins: [
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify('development'),
-      }),
-      new HtmlWebpackPlugin({
-        title: pkg.name + ' - ' + pkg.description,
-      }),
-      new webpack.HotModuleReplacementPlugin(),
-    ],
+    entry: config.paths.dev,
     module: {
+      preLoaders: [
+        { test: /\.jsx?$/, loaders: ['eslint'], include: config.paths.src },
+      ],
       loaders: [
-        { test: /\.scss$/, loaders: ['style', 'css', 'postcss'], include: CSS_PATHS },
+        {test: /\.png$/, loader: 'url?limit=100000&mimetype=image/png', include: config.paths.src},
+        { test: /\.jpg$/, loader: 'file', include: config.paths.src },
         {
-          test: /\.jsx?$/,
-          loaders: ['babel?cacheDirectory'],
-          include: [config.paths.demo, config.paths.src],
+          test: /\.scss$/,
+          loaders: ['style', 'css', 'postcss'],
+          include: [config.paths.src, ...COMMON_CSS]
         },
+        { test: /\.jsx?$/, loaders: ['babel?cacheDirectory'], include: config.paths.src },
       ],
     },
-    postcss: (wpk) => {
-      return [
-        require('postcss-import')({ addDependencyTo: wpk }),
-        require('precss')(),
-        require('autoprefixer')({ browsers: AUTOPREFIXER_BROWSERS }),
-      ];
-    },
-    devServer: {
-      historyApiFallback: true,
-      hot: true,
-      inline: true,
-      progress: true,
-      host: process.env.HOST,
-      port: process.env.PORT,
-      stats: 'errors-only',
+  });
+}
+
+
+if (TARGET === 'demo') {
+  module.exports = merge(demoCommon, {
+    entry: config.paths.demo,
+    module: {
+      preLoaders: [
+        { test: /\.jsx?$/, loaders: ['eslint'], include: config.paths.demo },
+      ],
+      loaders: [
+        {test: /\.png$/, loader: 'url?limit=100000&mimetype=image/png', include: config.paths.demo},
+        { test: /\.jpg$/, loader: 'file', include: config.paths.demo },
+        {
+          test: /\.scss$/,
+          loaders: ['style', 'css', 'postcss'],
+          include: [config.paths.demo, ...COMMON_CSS]
+        },
+        { test: /\.jsx?$/, loaders: ['babel?cacheDirectory'], include: [config.paths.demo] },
+      ],
     },
   });
 }
@@ -117,13 +140,7 @@ const distCommon = {
       { test: /\.jsx?$/, loaders: ['babel'], include: config.paths.src },
     ],
   },
-  postcss: (wpk) => {
-    return [
-      require('postcss-import')({ addDependencyTo: wpk }),
-      require('precss')(),
-      require('autoprefixer')({ browsers: AUTOPREFIXER_BROWSERS }),
-    ];
-  },
+  postcss: postcss,
 };
 
 if (TARGET === 'dist') {
