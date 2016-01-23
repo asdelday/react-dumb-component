@@ -11,7 +11,7 @@ module.exports = function karmaConf(config) {
       'src/**/*.spec.*',
     ],
     preprocessors: {
-      'src/**/*.spec.*': ['webpack', 'sourcemap']
+      'src/**/*.spec.*': ['webpack', 'sourcemap'],
     },
     browsers: ['PhantomJS'],
     singleRun: true,
@@ -22,4 +22,4 @@ module.exports = function karmaConf(config) {
     webpack: require('./webpack.config.babel'),
     webpackMiddleware: { noInfo: true },
   });
-}
+};
