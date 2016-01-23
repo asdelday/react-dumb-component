@@ -134,7 +134,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	      var newValue = value - step;
 	
-	      if (newValue >= minValue) {
+	      if (!(typeof minValue === 'number') || newValue >= minValue) {
 	        this.setState({ value: newValue });
 	      }
 	    }
@@ -148,7 +148,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	      var newValue = value + step;
 	
-	      if (newValue <= maxValue) {
+	      if (!(typeof maxValue === 'number') || newValue <= maxValue) {
 	        this.setState({ value: newValue });
 	      }
 	    }
