@@ -1,8 +1,9 @@
 # react-dumb-component
 
-[![npm](https://img.shields.io/npm/v/npm.svg)]()
-[![GitHub forks](https://img.shields.io/github/forks/badges/shields.svg?style=social&label=Fork)]()
-[![GitHub stars](https://img.shields.io/github/stars/badges/shields.svg?style=social&label=Star)]()
+[![GitHub issues](https://img.shields.io/github/issues/asdelday/react-dumb-component.svg)](https://github.com/asdelday/react-dumb-component/issues)
+[![GitHub forks](https://img.shields.io/github/forks/asdelday/react-dumb-component.svg)](https://github.com/asdelday/react-dumb-component/network)
+[![GitHub stars](https://img.shields.io/github/stars/asdelday/react-dumb-component.svg)](https://github.com/asdelday/react-dumb-component/stargazers)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/asdelday/react-dumb-component/master/LICENSE)
 
 A personal boilerplate to create ReactJS dumb components quickly.
 
