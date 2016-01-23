@@ -1,0 +1,19 @@
+@import '../variables.scss';
+
+.ButtonComponent {
+  background-color: $primary-color;
+  color: $white;
+  line-height: 16px;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+  border: solid 3px black color($primary-color lightness(+20%));
+  border-radius: 3px;
+
+  &:hover {
+    background-color: color($primary-color lightness(+10%));
+  }
+
+  &, &:focus, &:hover { outline: none; }
+}

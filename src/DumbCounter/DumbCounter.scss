@@ -1,0 +1,30 @@
+@import '../variables.scss';
+
+.DumbCounter {
+  background: $primary-color;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-radius: 3px;
+
+  & &__minus, & &__plus {
+    background: $white;
+    color: $primary-color;
+    width: 25px;
+    height: 25px;
+    padding: 0;
+
+    &:hover {
+      border-color: color($primary-color lightness(+40%));
+      color: color($primary-color lightness(+20%));
+    }
+  }
+
+  &__value {
+    margin: 0 5px;
+    color: $white;
+    font-weight: 800;
+    font-size: 20px;
+  }
+}

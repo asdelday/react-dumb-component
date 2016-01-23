@@ -1,5 +1,9 @@
 # react-dumb-component
 
+[![npm](https://img.shields.io/npm/v/npm.svg)]()
+[![GitHub forks](https://img.shields.io/github/forks/badges/shields.svg?style=social&label=Fork)]()
+[![GitHub stars](https://img.shields.io/github/stars/badges/shields.svg?style=social&label=Star)]()
+
 A personal boilerplate to create ReactJS dumb components quickly.
 
 ### Table of Contents

@@ -15,7 +15,7 @@ const config = {
     dev: path.join(ROOT_PATH, 'src/app.js'),
   },
   filename: pkg.name,
-  library: 'DumbComponent',
+  library: 'DumbCounter',
 };
 
 const AUTOPREFIXER_BROWSERS = [

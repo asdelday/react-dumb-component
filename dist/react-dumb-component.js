@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["React"], factory);
 	else if(typeof exports === 'object')
-		exports["DumbComponent"] = factory(require("react"));
+		exports["DumbCounter"] = factory(require("react"));
 	else
-		root["DumbComponent"] = factory(root["React"]);
+		root["DumbCounter"] = factory(root["React"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_2__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -59,27 +59,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.ExtraDumbComponent = exports.SubDumbComponent = exports.default = undefined;
+	exports.ButtonComponent = exports.default = undefined;
 	
-	var _DumbComponent = __webpack_require__(1);
+	var _DumbCounter = __webpack_require__(1);
 	
-	var _DumbComponent2 = _interopRequireDefault(_DumbComponent);
+	var _DumbCounter2 = _interopRequireDefault(_DumbCounter);
 	
-	var _SubDumbComponent = __webpack_require__(3);
+	var _ButtonComponent = __webpack_require__(3);
 	
-	var _SubDumbComponent2 = _interopRequireDefault(_SubDumbComponent);
-	
-	var _ExtraDumbComponent = __webpack_require__(10);
-	
-	var _ExtraDumbComponent2 = _interopRequireDefault(_ExtraDumbComponent);
+	var _ButtonComponent2 = _interopRequireDefault(_ButtonComponent);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = _DumbComponent2.default;
-	exports.SubDumbComponent = _SubDumbComponent2.default;
-	exports.ExtraDumbComponent = _ExtraDumbComponent2.default; /**
-	                                                            * Component Library Output
-	                                                            */
+	/**
+	 * Component Library Output
+	 */
+	exports.default = _DumbCounter2.default;
+	exports.ButtonComponent = _ButtonComponent2.default;
 
 /***/ },
 /* 1 */
@@ -97,13 +93,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _SubDumbComponent = __webpack_require__(3);
+	var _ButtonComponent = __webpack_require__(3);
 	
-	var _SubDumbComponent2 = _interopRequireDefault(_SubDumbComponent);
+	var _ButtonComponent2 = _interopRequireDefault(_ButtonComponent);
 	
-	var _DumbComponent = __webpack_require__(8);
-	
-	var _DumbComponent2 = _interopRequireDefault(_DumbComponent);
+	__webpack_require__(8);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -113,37 +107,84 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	// eslint-disable-line no-unused-vars
+	var DumbCounter = function (_React$Component) {
+	  _inherits(DumbCounter, _React$Component);
 	
-	var DumbComponent = function (_React$Component) {
-	  _inherits(DumbComponent, _React$Component);
+	  function DumbCounter(props) {
+	    _classCallCheck(this, DumbCounter);
 	
-	  function DumbComponent() {
-	    _classCallCheck(this, DumbComponent);
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(DumbCounter).call(this, props));
 	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(DumbComponent).apply(this, arguments));
+	    _this.state = {
+	      value: props.initialValue
+	    };
+	
+	    _this.onMinusValue = _this.onMinusValue.bind(_this);
+	    _this.onPlusValue = _this.onPlusValue.bind(_this);
+	    return _this;
 	  }
 	
-	  _createClass(DumbComponent, [{
+	  _createClass(DumbCounter, [{
+	    key: 'onMinusValue',
+	    value: function onMinusValue() {
+	      var value = this.state.value;
+	      var _props = this.props;
+	      var minValue = _props.minValue;
+	      var step = _props.step;
+	
+	      var newValue = value - step;
+	
+	      if (newValue >= minValue) {
+	        this.setState({ value: newValue });
+	      }
+	    }
+	  }, {
+	    key: 'onPlusValue',
+	    value: function onPlusValue() {
+	      var value = this.state.value;
+	      var _props2 = this.props;
+	      var maxValue = _props2.maxValue;
+	      var step = _props2.step;
+	
+	      var newValue = value + step;
+	
+	      if (newValue <= maxValue) {
+	        this.setState({ value: newValue });
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var value = this.state.value;
+	
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'DumbComponent' },
+	        { className: 'DumbCounter' },
+	        _react2.default.createElement(_ButtonComponent2.default, { className: 'DumbCounter__minus', value: '-', clickEvent: this.onMinusValue }),
 	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'Hello World!'
+	          'span',
+	          { className: 'DumbCounter__value' },
+	          value
 	        ),
-	        _react2.default.createElement(_SubDumbComponent2.default, null)
+	        _react2.default.createElement(_ButtonComponent2.default, { className: 'DumbCounter__plus', value: '+', clickEvent: this.onPlusValue })
 	      );
 	    }
 	  }]);
 	
-	  return DumbComponent;
+	  return DumbCounter;
 	}(_react2.default.Component);
 	
-	exports.default = DumbComponent;
+	DumbCounter.propTypes = {
+	  initialValue: _react.PropTypes.number,
+	  maxValue: _react.PropTypes.number,
+	  minValue: _react.PropTypes.number,
+	  step: _react.PropTypes.number
+	};
+	DumbCounter.defaultProps = {
+	  initialValue: 0,
+	  step: 1
+	};
+	exports.default = DumbCounter;
 
 /***/ },
 /* 2 */
@@ -167,9 +208,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _SubDumbComponent = __webpack_require__(4);
-	
-	var _SubDumbComponent2 = _interopRequireDefault(_SubDumbComponent);
+	__webpack_require__(4);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -179,41 +218,54 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	// eslint-disable-line no-unused-vars
+	var ButtonComponent = function (_React$Component) {
+	  _inherits(ButtonComponent, _React$Component);
 	
-	var SubDumbComponent = function (_React$Component) {
-	  _inherits(SubDumbComponent, _React$Component);
+	  function ButtonComponent(props) {
+	    _classCallCheck(this, ButtonComponent);
 	
-	  function SubDumbComponent() {
-	    _classCallCheck(this, SubDumbComponent);
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ButtonComponent).call(this, props));
 	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(SubDumbComponent).apply(this, arguments));
+	    _this.handleClick = _this.handleClick.bind(_this);
+	    return _this;
 	  }
 	
-	  _createClass(SubDumbComponent, [{
+	  _createClass(ButtonComponent, [{
+	    key: 'handleClick',
+	    value: function handleClick() {
+	      var clickEvent = this.props.clickEvent;
+	
+	      if (typeof clickEvent === 'function') {
+	        clickEvent();
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _props = this.props;
+	      var value = _props.value;
+	      var className = _props.className;
+	
 	      return _react2.default.createElement(
-	        'div',
-	        { className: 'SubDumbComponent' },
-	        _react2.default.createElement(
-	          'h2',
-	          { className: 'SubDumbComponent__title' },
-	          'SubComponent'
-	        ),
-	        _react2.default.createElement(
-	          'p',
-	          { className: 'SubDumbComponent__content' },
-	          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet consequuntur dolor doloribus eius error explicabo impedit itaque iusto minima quidem recusandae, suscipit vero. Deserunt, enim iure labore quam repellendus vel.'
-	        )
+	        'button',
+	        { className: 'ButtonComponent' + ' ' + className, onClick: this.handleClick },
+	        value
 	      );
 	    }
 	  }]);
 	
-	  return SubDumbComponent;
+	  return ButtonComponent;
 	}(_react2.default.Component);
 	
-	exports.default = SubDumbComponent;
+	ButtonComponent.propTypes = {
+	  value: _react.PropTypes.string,
+	  className: _react.PropTypes.string,
+	  clickEvent: _react.PropTypes.func
+	};
+	ButtonComponent.defaultProps = {
+	  className: ''
+	};
+	exports.default = ButtonComponent;
 
 /***/ },
 /* 4 */
@@ -231,8 +283,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./SubDumbComponent.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./SubDumbComponent.scss");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./ButtonComponent.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./ButtonComponent.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -250,7 +302,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	
 	// module
-	exports.push([module.id, ".SubDumbComponent{background:#f0141e}.SubDumbComponent__content{background:#000;color:#fff;margin:15px}.SubDumbComponent__title{color:#fff}", ""]);
+	exports.push([module.id, ".ButtonComponent{background-color:#226c9b;color:#fff;line-height:16px;font-size:16px;text-align:center;cursor:pointer;font-weight:700;border:3px solid #4ba2d8;border-radius:3px}.ButtonComponent,.ButtonComponent:focus,.ButtonComponent:hover{outline:none}.ButtonComponent:hover{background-color:#2b8ac5}", ""]);
 	
 	// exports
 
@@ -581,8 +633,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./DumbComponent.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./DumbComponent.scss");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./DumbCounter.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./DumbCounter.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -600,106 +652,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	
 	// module
-	exports.push([module.id, ".DumbComponent{border:5px solid #000;padding:20px}", ""]);
-	
-	// exports
-
-
-/***/ },
-/* 10 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(2);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _ExtraDumbComponent = __webpack_require__(11);
-	
-	var _ExtraDumbComponent2 = _interopRequireDefault(_ExtraDumbComponent);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	// eslint-disable-line no-unused-vars
-	
-	var ExtraDumbComponent = function (_React$Component) {
-	  _inherits(ExtraDumbComponent, _React$Component);
-	
-	  function ExtraDumbComponent() {
-	    _classCallCheck(this, ExtraDumbComponent);
-	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ExtraDumbComponent).apply(this, arguments));
-	  }
-	
-	  _createClass(ExtraDumbComponent, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'ExtraDumbComponent' },
-	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          'Extra Component'
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return ExtraDumbComponent;
-	}(_react2.default.Component);
-	
-	exports.default = ExtraDumbComponent;
-
-/***/ },
-/* 11 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(12);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(7)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./ExtraDumbComponent.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./ExtraDumbComponent.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 12 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(6)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, ".ExtraDumbComponent{color:#f0141e}", ""]);
+	exports.push([module.id, ".DumbCounter{background:#226c9b;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;padding:5px;border-radius:3px}.DumbCounter .DumbCounter__minus,.DumbCounter .DumbCounter__plus{background:#fff;color:#226c9b;width:25px;height:25px;padding:0}.DumbCounter .DumbCounter__minus:hover,.DumbCounter .DumbCounter__plus:hover{border-color:#9fcdea;color:#4ba2d8}.DumbCounter__value{margin:0 5px;color:#fff;font-weight:800;font-size:20px}", ""]);
 	
 	// exports
 

@@ -9,9 +9,16 @@
   <script src="node_modules/react-dom/dist/react-dom.min.js"></script>
   <script src="./dist/react-dumb-component.min.js"></script>
   <script>
+    var data = {
+      initialValue: 50,
+      minValue: 0,
+      maxValue: 100,
+      step: 2,
+    };
+
     var app = document.createElement('div');
     window.document.body.appendChild(app);
-    ReactDOM.render(React.createElement(DumbComponent.default, null), app);
+    ReactDOM.render(React.createElement(DumbCounter.default, data), app);
   </script>
 </body>
 </html>

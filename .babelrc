@@ -3,6 +3,9 @@
   "env": {
     "start": {
       "presets": ["react-hmre"]
+    },
+    "demo": {
+      "presets": ["react-hmre"]
     }
   }
 }

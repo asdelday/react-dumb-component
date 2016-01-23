@@ -1,12 +1,10 @@
 /**
  * Component Library Output
  */
-import DumbComponent from './DumbComponent';
-import SubDumbComponent from './SubDumbComponent';
-import ExtraDumbComponent from './ExtraDumbComponent';
+import DumbCounter from './DumbCounter';
+import ButtonComponent from './ButtonComponent';
 
 export {
-  DumbComponent as default,
-  SubDumbComponent,
-  ExtraDumbComponent,
+  DumbCounter as default,
+  ButtonComponent,
 };

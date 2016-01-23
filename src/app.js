@@ -1,14 +1,14 @@
 import React from 'react';
 import { render } from 'react-dom';
-import DumbComponent, { ExtraDumbComponent } from './index';
+import DumbCounter from './index';
 
 (() => {
   const app = document.createElement('div');
   window.document.body.appendChild(app);
+
   render(
     <div>
-      <DumbComponent />
-      <ExtraDumbComponent />
+      <DumbCounter initialValue={10} minValue={0} maxValue={100} step={2} />
     </div>
     , app
   );
