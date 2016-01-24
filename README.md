@@ -10,11 +10,12 @@ A personal boilerplate to create ReactJS dumb components quickly.
 ### Table of Contents
 1. [Installation](#installation)
 2. [Develop](#develop)
-2. [Demo](#demo)
-4. [Create Version](#version)
-5. [Build bundles](#bundles)
-6. [TODO](#todo)
-7. [License](#license)
+3. [Demo](#demo)
+4. [Testing](#test)
+5. [Create Version](#version)
+6. [Build bundles](#bundles)
+7. [TODO](#todo)
+8. [License](#license)
 
 ---
 
@@ -47,10 +48,24 @@ To override the default host and port through env (HOST, PORT)
 npm run demo
 ```
 
+<div id="test"></div>
+
+### 4. Testing
+Using Karma as test runner, mocha as test library and chai as assertions library.
+
+To run test once:
+```
+npm test
+```
+
+To run tests with watcher:
+```
+npm run test:tdd
+```
 
 <div id="version"></div>
 
-### 4. Create Version
+### 5. Create Version
 Updates */dist* and *package.json* with the new package version and create a version tag to Git
 ```
 npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease]
@@ -63,7 +78,7 @@ npm version patch -m "Upgrade to %s for reasons"
 
 <div id="bundles"></div>
 
-### 5. Build bundles
+### 6. Build bundles
 Generate library bundles without minification
 ```
 npm run dist
@@ -112,7 +127,7 @@ var webpackConfig = {
 
 <div id="todo"></div>
 
-### 6. TODO
+### 7. TODO
 * Document boilerplate
 * ~~Clean project~~
 * ~~Add CSS Preprocessor support~~
@@ -122,5 +137,5 @@ var webpackConfig = {
 
 <div id="license"></div>
 
-### 7. License
+### 8. License
 react-dumb-component is available under MIT. See LICENSE for more details.

@@ -40,7 +40,7 @@ process.env.BABEL_ENV = TARGET;
 
 /* COMPONENT DEMO
  * ---------------------------------------------------------------------------------------------- */
-const demoCommon = {
+const devCommon = {
   devtool: 'eval-source-map',
   resolve: {
     extensions: ['', '.js', '.jsx', '.css', '.png', '.jpg'],
@@ -73,7 +73,7 @@ const demoCommon = {
 
 
 if (TARGET === 'start' || !TARGET) {
-  module.exports = merge(demoCommon, {
+  module.exports = merge(devCommon, {
     entry: config.paths.dev,
     module: {
       preLoaders: [
@@ -99,7 +99,7 @@ if (TARGET === 'start' || !TARGET) {
 
 
 if (TARGET === 'demo') {
-  module.exports = merge(demoCommon, {
+  module.exports = merge(devCommon, {
     entry: config.paths.demo,
     module: {
       preLoaders: [
@@ -123,6 +123,26 @@ if (TARGET === 'demo') {
   });
 }
 
+
+/* TESTING
+ * ---------------------------------------------------------------------------------------------- */
+if (TARGET === 'test' || TARGET === 'test:tdd') {
+  module.exports = merge(devCommon, {
+    module: {
+      preLoaders: [
+        { test: /\.jsx?$/, loaders: ['eslint'], include: config.paths.src },
+      ],
+      loaders: [
+        {
+          test: /\.scss$/,
+          loaders: ['style', 'css', 'postcss'],
+          include: [config.paths.src, ...COMMON_CSS],
+        },
+        { test: /\.jsx?$/, loaders: ['babel?cacheDirectory'], include: config.paths.src },
+      ],
+    },
+  });
+}
 
 /* COMPONENT DIST
  * ---------------------------------------------------------------------------------------------- */
