@@ -87,7 +87,7 @@
     "dist": "webpack",
     "dist:min": "webpack",
     "preversion": "npm run test && npm run test:lint && npm run dist && npm run dist:min && git commit --allow-empty -am \"Update dist\"",
-    "prepublish": "npm run dist && npm run dist:min",
-    "postinstall": "node tools/post-install.js"
+    "build": "npm run test && npm run test:lint && npm run dist && npm run dist:min",
+    "prepublish": "npm run build"
   }
 }
