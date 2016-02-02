@@ -248,7 +248,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	      return _react2.default.createElement(
 	        'button',
-	        { className: 'ButtonComponent' + ' ' + className, onClick: this.handleClick },
+	        { className: 'ButtonComponent ' + className, onClick: this.handleClick },
 	        value
 	      );
 	    }

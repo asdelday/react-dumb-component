@@ -182,7 +182,7 @@ const distCommon = {
   postcss,
 };
 
-if (TARGET === 'dist') {
+if (TARGET === 'dist:normal') {
   module.exports = merge(distCommon, {
     output: {
       filename: `${ config.filename }.js`,
