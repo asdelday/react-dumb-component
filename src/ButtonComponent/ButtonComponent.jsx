@@ -27,7 +27,7 @@ export default class ButtonComponent extends React.Component {
     const { value, className } = this.props;
 
     return (
-      <button className={ 'ButtonComponent' + ' ' + className } onClick={ this.handleClick }>
+      <button className={ `ButtonComponent ${ className }` } onClick={ this.handleClick }>
         {value}
       </button>
     );

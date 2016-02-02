@@ -6,10 +6,7 @@ module.exports = function karmaConf(config) {
   config.set({
     frameworks: ['mocha', 'chai'],
     reporters: ['spec', 'coverage'],
-    files: [
-      'node_modules/phantomjs-polyfill/bind-polyfill.js',
-      'src/**/*.spec.*',
-    ],
+    files: ['src/**/*.spec.*'],
     preprocessors: {
       'src/**/*.spec.*': ['webpack', 'sourcemap'],
     },

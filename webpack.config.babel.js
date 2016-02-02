@@ -13,6 +13,8 @@ const config = {
     src: path.join(ROOT_PATH, 'src'),
     demo: path.join(ROOT_PATH, 'demo'),
     dev: path.join(ROOT_PATH, 'src/app.js'),
+    devTemplate: path.join(ROOT_PATH, 'src/index.html'),
+    demoTemplate: path.join(ROOT_PATH, 'demo/index.html'),
   },
   filename: pkg.name,
   library: 'DumbCounter',
@@ -55,9 +57,6 @@ const devCommon = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
-    new HtmlWebpackPlugin({
-      title: pkg.name + ' - ' + pkg.description,
-    }),
     new webpack.HotModuleReplacementPlugin(),
   ],
   devServer: {
@@ -94,6 +93,12 @@ if (TARGET === 'start' || !TARGET) {
         { test: /\.jsx?$/, loaders: ['babel?cacheDirectory'], include: config.paths.src },
       ],
     },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: config.paths.devTemplate,
+        title: `${ pkg.name } - ${ pkg.description }`,
+      }),
+    ],
   });
 }
 
@@ -120,6 +125,12 @@ if (TARGET === 'demo') {
         { test: /\.jsx?$/, loaders: ['babel?cacheDirectory'], include: [config.paths.demo] },
       ],
     },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: config.paths.demoTemplate,
+        title: `${ pkg.name } - ${ pkg.description }`,
+      }),
+    ],
   });
 }
 
@@ -174,7 +185,7 @@ const distCommon = {
 if (TARGET === 'dist') {
   module.exports = merge(distCommon, {
     output: {
-      filename: config.filename + '.js',
+      filename: `${ config.filename }.js`,
     },
   });
 }
@@ -182,7 +193,7 @@ if (TARGET === 'dist') {
 if (TARGET === 'dist:min') {
   module.exports = merge(distCommon, {
     output: {
-      filename: config.filename + '.min.js',
+      filename: `${ config.filename }.min.js`,
     },
     plugins: [
       new webpack.optimize.UglifyJsPlugin({

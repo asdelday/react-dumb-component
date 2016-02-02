@@ -63,6 +63,11 @@ To run tests with watcher:
 npm run test:tdd
 ```
 
+To run both:
+```
+npm run test:all
+```
+
 <div id="version"></div>
 
 ### 5. Create Version
@@ -81,11 +86,16 @@ npm version patch -m "Upgrade to %s for reasons"
 ### 6. Build bundles
 Generate library bundles without minification
 ```
-npm run dist
+npm run dist:normal
 ```
 Generate library bundles minificated
 ```
 npm run dist:min
+```
+
+Generate both, minificated and normal, library bundles
+```
+npm run dist
 ```
 
 ---
@@ -128,10 +138,10 @@ var webpackConfig = {
 <div id="todo"></div>
 
 ### 7. TODO
-* Document boilerplate
+* ~~Document boilerplate~~
 * ~~Clean project~~
 * ~~Add CSS Preprocessor support~~
-* Add Test support
+* ~~Add Test support~~
 * Add GitHub pages
 
 
