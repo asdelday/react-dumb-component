@@ -2,7 +2,7 @@
   "name": "react-dumb-component",
   "description": "Boilerplate for ReactJS dumb components",
   "main": "./dist/react-dumb-component.js",
-  "version": "1.5.1",
+  "version": "2.0.0",
   "license": "MIT",
   "author": "Rodrigo Ortega Cuesta <rodortcue@gmail.com> (http://github.com/asdelday)",
   "user": "asdelday",
@@ -64,7 +64,7 @@
     "postcss-import": "^8.0.2",
     "postcss-loader": "^0.8.1",
     "precss": "^1.4.0",
-    "react-addons-test-utils": "^0.14.7",
+    "react-addons-test-utils": "^0.14.6",
     "style-loader": "^0.13.0",
     "sync-exec": "^0.6.2",
     "url-loader": "^0.5.7",
@@ -74,8 +74,8 @@
   },
   "dependencies": {
     "classnames": "^2.2.1",
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2"
   },
   "scripts": {
     "start": "webpack-dev-server",
@@ -83,10 +83,10 @@
     "test": "karma start",
     "test:tdd": "karma start --auto-watch --no-single-run",
     "test:lint": "eslint . --ext .js --ext .jsx",
-    "dist": "webpack",
+    "test:all": "npm run test && npm run test:lint",
+    "dist:normal": "webpack",
     "dist:min": "webpack",
-    "preversion": "npm run test && npm run test:lint && npm run dist && npm run dist:min && git commit --allow-empty -am \"Update dist\"",
-    "build": "npm run test && npm run test:lint && npm run dist && npm run dist:min",
-    "prepublish": "npm run build"
+    "dist": "npm run dist:normal && npm run dist:min",
+    "preversion": "npm run test:all && npm run dist && git commit --allow-empty -am \"Update dist\""
   }
 }
