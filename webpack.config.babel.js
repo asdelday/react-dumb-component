@@ -56,7 +56,7 @@ const devCommon = {
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
     new HtmlWebpackPlugin({
-      title: pkg.name + ' - ' + pkg.description,
+      title: `${pkg.name} - ${pkg.description}`,
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],
@@ -174,7 +174,7 @@ const distCommon = {
 if (TARGET === 'dist') {
   module.exports = merge(distCommon, {
     output: {
-      filename: config.filename + '.js',
+      filename: `${config.filename}.js`,
     },
   });
 }
@@ -182,7 +182,7 @@ if (TARGET === 'dist') {
 if (TARGET === 'dist:min') {
   module.exports = merge(distCommon, {
     output: {
-      filename: config.filename + '.min.js',
+      filename: `${config.filename}.min.js`,
     },
     plugins: [
       new webpack.optimize.UglifyJsPlugin({
