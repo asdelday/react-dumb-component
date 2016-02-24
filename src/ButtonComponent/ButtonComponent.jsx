@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import cx from 'classnames';
 import './ButtonComponent.scss';
 
 export default class ButtonComponent extends React.Component {
@@ -27,7 +28,7 @@ export default class ButtonComponent extends React.Component {
     const { value, className } = this.props;
 
     return (
-      <button className={ `ButtonComponent ${className}` } onClick={ this.handleClick }>
+      <button className={ cx(className, 'ButtonComponent') } onClick={ this.handleClick }>
         {value}
       </button>
     );

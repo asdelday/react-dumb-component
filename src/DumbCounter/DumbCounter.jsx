@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import cx from 'classnames';
 import ButtonComponent from '../ButtonComponent';
 import './DumbCounter.scss';
 
@@ -8,6 +9,7 @@ export default class DumbCounter extends React.Component {
     maxValue: PropTypes.number,
     minValue: PropTypes.number,
     step: PropTypes.number,
+    className: PropTypes.string,
   };
 
   static defaultProps = {
@@ -46,10 +48,10 @@ export default class DumbCounter extends React.Component {
   }
 
   render() {
-    const { value } = this.state;
+    const { value, className } = this.state;
 
     return (
-      <div className="DumbCounter">
+      <div className={ cx(className, 'DumbCounter') }>
         <ButtonComponent className="DumbCounter__minus" value="-" clickEvent={this.onMinusValue} />
         <span className="DumbCounter__value">{value}</span>
         <ButtonComponent className="DumbCounter__plus" value="+" clickEvent={this.onPlusValue} />
