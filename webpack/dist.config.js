@@ -1,5 +1,4 @@
 import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 import config, { postcss, COMMON_CSS } from './config';
 import merge from 'webpack-merge';
 
