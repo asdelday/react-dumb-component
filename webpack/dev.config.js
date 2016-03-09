@@ -46,4 +46,10 @@ export const start = merge(common, {
   ],
 });
 
-export const test = merge(common, {});
+export const test = merge(common, {
+  externals: {
+    cheerio: 'window',
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true,
+  },
+});

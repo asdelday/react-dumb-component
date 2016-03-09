@@ -1,15 +1,11 @@
 import React from 'react';
-import {
-  renderIntoDocument,
-  findRenderedDOMComponentWithClass,
-  findRenderedDOMComponentWithTag,
-  Simulate
-} from 'react-addons-test-utils';
+import { shallow } from 'enzyme';
 import DumbCounter from './DumbCounter';
+import ButtonComponent from '../ButtonComponent';
 
-describe('DumbCounter', function() {
-  it('should do boilerplate things', function() {
-    // TODO: test something now
-    expect(true).to.equal(true);
+describe('<DumbCounter />', () => {
+  it('should has two ButtonComponent', () => {
+    const wrapper = shallow(<DumbCounter />);
+    expect(wrapper.find(ButtonComponent)).to.have.length(2);
   });
 });
