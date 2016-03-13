@@ -27,6 +27,10 @@ export default class DumbCounter extends React.Component {
     this.onPlusValue = this.onPlusValue.bind(this);
   }
 
+  componentDidMount() {
+    console.log('mounted'); // eslint-disable-line
+  }
+
   onMinusValue() {
     const { value } = this.state;
     const { minValue, step } = this.props;

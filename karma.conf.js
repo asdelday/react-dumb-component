@@ -4,7 +4,7 @@ require('babel-register');
 
 module.exports = function karmaConf(config) {
   config.set({
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['mocha', 'chai', 'sinon'],
     reporters: ['spec', 'coverage'],
     files: ['src/**/*.spec.*'],
     preprocessors: {
