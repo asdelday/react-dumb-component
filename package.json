@@ -91,6 +91,9 @@
     "dist:normal": "webpack",
     "dist:min": "webpack",
     "dist": "npm run dist:normal && npm run dist:min",
-    "preversion": "npm run test:all && npm run dist && git commit --allow-empty -am \"Update dist\""
+    "preversion": "npm run test:all && npm run dist && git commit --allow-empty -am \"Update dist\"",
+    "version:major": "npm version major -m \"v%s\"",
+    "version:minor": "npm version minor -m \"v%s\"",
+    "version:patch": "npm version patch -m \"v%s\""
   }
 }
