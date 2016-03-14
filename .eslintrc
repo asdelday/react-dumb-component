@@ -14,6 +14,7 @@
   "rules": {
     "react/jsx-quotes": 0,
     "react/prefer-stateless-function": [0],
+    "react/jsx-indent-props": [0],
     "jsx-quotes": [2, "prefer-double"]
   }
 }
