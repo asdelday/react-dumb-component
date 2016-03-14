@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"));
+		module.exports = factory(require("react"), require("classnames"));
 	else if(typeof define === 'function' && define.amd)
-		define(["React"], factory);
+		define(["React", "classNames"], factory);
 	else if(typeof exports === 'object')
-		exports["DumbCounter"] = factory(require("react"));
+		exports["DumbCounter"] = factory(require("react"), require("classnames"));
 	else
-		root["DumbCounter"] = factory(root["React"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__) {
+		root["DumbCounter"] = factory(root["React"], root["classNames"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -129,6 +129,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	
 	  _createClass(DumbCounter, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      console.log('mounted'); // eslint-disable-line
+	    }
+	  }, {
 	    key: 'onMinusValue',
 	    value: function onMinusValue() {
 	      var value = this.state.value;
@@ -202,57 +207,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 3 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	  Copyright (c) 2016 Jed Watson.
-	  Licensed under the MIT License (MIT), see
-	  http://jedwatson.github.io/classnames
-	*/
-	/* global define */
-	
-	(function () {
-		'use strict';
-	
-		var hasOwn = {}.hasOwnProperty;
-	
-		function classNames () {
-			var classes = [];
-	
-			for (var i = 0; i < arguments.length; i++) {
-				var arg = arguments[i];
-				if (!arg) continue;
-	
-				var argType = typeof arg;
-	
-				if (argType === 'string' || argType === 'number') {
-					classes.push(arg);
-				} else if (Array.isArray(arg)) {
-					classes.push(classNames.apply(null, arg));
-				} else if (argType === 'object') {
-					for (var key in arg) {
-						if (hasOwn.call(arg, key) && arg[key]) {
-							classes.push(key);
-						}
-					}
-				}
-			}
-	
-			return classes.join(' ');
-		}
-	
-		if (typeof module !== 'undefined' && module.exports) {
-			module.exports = classNames;
-		} else if (true) {
-			// register as 'classnames', consistent with npm package name
-			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
-				return classNames;
-			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-		} else {
-			window.classNames = classNames;
-		}
-	}());
-
+	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ },
 /* 4 */
@@ -369,7 +326,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	
 	// module
-	exports.push([module.id, ".ButtonComponent{background-color:#226c9b;color:#fff;line-height:16px;font-size:16px;text-align:center;cursor:pointer;font-weight:700;border:3px solid #4ba2d8;border-radius:3px}.ButtonComponent,.ButtonComponent:focus,.ButtonComponent:hover{outline:none}.ButtonComponent:hover{background-color:#2b8ac5}", ""]);
+	exports.push([module.id, ".ButtonComponent{background-color:#226c9b;color:#fff;line-height:16px;font-size:16px;text-align:center;cursor:pointer;font-weight:700;border:3px solid #4ba2d8;border-radius:3px}.ButtonComponent:hover{background-color:#2b8ac5}.ButtonComponent,.ButtonComponent:focus,.ButtonComponent:hover{outline:none}", ""]);
 	
 	// exports
 

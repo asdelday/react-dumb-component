@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import config, { postcss, COMMON_CSS } from './config';
 
-export const demo = {
+export default {
   devtool: 'eval-source-map',
   resolve: { extensions: ['', '.js', '.jsx', '.css', '.png', '.jpg'] },
   entry: config.paths.demo,

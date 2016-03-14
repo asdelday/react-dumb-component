@@ -18,6 +18,13 @@ export function postcss(wpk) {
   ];
 }
 
+export const externals = {
+  react: { commonjs: 'react', commonjs2: 'react', amd: 'React', root: 'React' },
+  classnames: {
+    commonjs: 'classnames', commonjs2: 'classnames', amd: 'classNames', root: 'classNames',
+  },
+};
+
 export default {
   paths: {
     dist: path.join(__dirname, '../dist'),

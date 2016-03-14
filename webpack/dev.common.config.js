@@ -1,9 +1,7 @@
 import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 import config, { postcss, COMMON_CSS } from './config';
-import merge from 'webpack-merge';
 
-const common = {
+export default {
   devtool: 'eval-source-map',
   resolve: { extensions: ['', '.js', '.jsx', '.css', '.png', '.jpg'] },
   module: {
@@ -35,21 +33,3 @@ const common = {
     stats: 'errors-only',
   },
 };
-
-export const start = merge(common, {
-  entry: config.paths.dev,
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: config.paths.devTemplate,
-      title: `${config.pkg.name} - ${config.pkg.description}`,
-    }),
-  ],
-});
-
-export const test = merge(common, {
-  externals: {
-    cheerio: 'window',
-    'react/lib/ExecutionEnvironment': true,
-    'react/lib/ReactContext': true,
-  },
-});
